@@ -8,4 +8,7 @@ def search():
         if prompt == 0:
             rand_num = random.randint()
             matching_indices.append(rand_num)
-        elif prompt
+        elif isinstance(prompt,str):
+            for index, lines in enumerate(library.csv):
+                if prompt in lines:
+                    matching_indices.append(index)
