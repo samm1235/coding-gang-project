@@ -39,26 +39,48 @@ def display_food(food_options):
 #{i} | {food_option['name']}
    Cuisine  : {food_option['cuisine']}
    Price : {food_option['price']} """)
-    print("=" * 80 + "\n")
+  
 
 display_food(food_options)
 
 
 def add_food(filename, food_options):
    answer = input("Would you like to add a new food option?")
+   
    if answer == "yes":
       new_name = input("Input name of restaurant")
       new_cuisine = input("Input cuisine")
       new_price = input("Input price")
+      new_tags = input("Input tags (use | to separate): ")
       with open(filename, "a", newline="") as f:
           writer = csv.writer(f)
-          writer.writerow([new_name, new_cuisine, new_price])
+          writer.writerow([new_name, new_cuisine, new_price, new_tags])
           print("Added successfully!")
-    else:
-      print("invalid answer")
-      return
 
+  
 add_food("library.csv", food_options)
 
+def filter_food(food_options):
+   filter_cuisine = input("What cuisine do you prefer?: ").lower()
+   filter_price = input("What is your price range").lower()
+   filter_tags = input("Any other requirements?").lower()
+   results = []
+   for food in food_options:
+      tags = food["tags"].split("|")
 
-   
+      match = True
+      if filter_tags:
+         if filter_tags not in [t.lower() for t in tags]:  #for t in tags mean go through each item in "tags" list
+            match = False
+      if filter_cuisine:
+         if food["cuisine"].lower()!= filter_cuisine:
+            match = False
+      if filter_price:
+         if food["price"].lower() != filter_price:
+            match = False
+      if match == True:
+         results.append(food)
+   if match == False:
+      print("There is no food that fits your requirements")
+   return results
+filter_food(food_options)
