@@ -27,12 +27,38 @@ def load_food_option():
 
 food_options = load_food_option()
 
-print("First food:", food_options[0])
-def display_food_library():
-    for item in food_library[1:]:  
-        name = item[0]
-        cuisine = item[1]
-        price = item[2]
-        tags = item[3]
+def display_food(food_options):
+    if not food_options:
+        print(" Nothing to display.")
+        return
 
-        print(f"{name} | {cuisine} | {price} | {tags}")
+    print(f"=== Food options ===")
+
+    for i, food_option in enumerate(food_options, start=1):
+        print(f"""
+#{i} | {food_option['name']}
+   Cuisine  : {food_option['cuisine']}
+   Price : {food_option['price']} """)
+    print("=" * 80 + "\n")
+
+display_food(food_options)
+
+
+def add_food(filename, food_options):
+   answer = input("Would you like to add a new food option?")
+   if answer == "yes":
+      new_name = input("Input name of restaurant")
+      new_cuisine = input("Input cuisine")
+      new_price = input("Input price")
+      with open(filename, "a", newline="") as f:
+          writer = csv.writer(f)
+          writer.writerow([new_name, new_cuisine, new_price])
+          print("Added successfully!")
+    else:
+      print("invalid answer")
+      return
+
+add_food("library.csv", food_options)
+
+
+   
