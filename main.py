@@ -2,8 +2,9 @@ import csv
 
 food_library = [
     ["name", "cuisine", "price", "tags"],
-    ["Chicken Rice", "singaporean", "cheap", "fast|lunch"],
-    ["Sushiro", "japanese", "medium", "sushi|lunch"]
+    ["Chicken Rice", "local", "$", "fast|local"],
+    ["Sushiro", "japanese", "$$", "sushi|"],
+    ["GYG", "mexican", "$", "fastfood"]
 ]
 
 with open("library.csv", "w", newline="") as f:
@@ -27,6 +28,10 @@ def load_food_option():
 
 food_options = load_food_option()
 
+
+
+
+
 def display_food(food_options):
     if not food_options:
         print(" Nothing to display.")
@@ -38,10 +43,11 @@ def display_food(food_options):
         print(f"""
 #{i} | {food_option['name']}
    Cuisine  : {food_option['cuisine']}
-   Price : {food_option['price']} """)
+   Price : {food_option['price']} 
+   Others : {food_option['tags']} """)
   
 
-display_food(food_options)
+
 
 
 def add_food(filename, food_options):
@@ -60,9 +66,10 @@ def add_food(filename, food_options):
 
 
 def rank_food(food_options):
+   print("Please input your preferences. Press enter to skip")
    cuisine_input = input("What cuisine do you prefer?: ").lower()
-   price_input = input("What is your price range").lower()
-   tag_input = input("Any other requirements?").lower()
+   price_input = input("What is your price range (from $ to $$$): ").lower()
+   tag_input = input("Any other requirements? (use | to separate): ").lower()
    searched_tags = []
 
    if tag_input:
@@ -88,5 +95,39 @@ def rank_food(food_options):
 
       ranked_results.append((score, food))
    ranked_results.sort(reverse = True, key=lambda item: item[0])
-   return print(f"{ranked_results}")
-rank_food(food_options)
+   for i, (score, food) in enumerate(ranked_results, start=1):
+        print(f"""
+#{i} | {food['name']}
+   Cuisine  : {food['cuisine']}
+   Price : {food['price']} """)
+  
+
+
+def run_library(filename):
+   print("Welcome")
+   while True:
+      print("=== Menu ===")
+      print("1. View all food options")
+      print("2. Add new food options")
+      print("3. Help choose food options based on preferences")
+      print("4. Random food generator")
+      print("5. Quit and save")
+
+      choice = input("Please input choice from 1-5: ")
+      print()
+      if choice == "1":
+         display_food(food_options)
+      elif choice == "2":
+         add_food("library.csv", food_options)
+      elif choice == "3":
+         rank_food(food_options)
+         break
+      elif choice == "4":
+         print('test')
+      elif choice == "5":
+         print("Goodbye!")
+         break
+      else:
+         print('invalid choice')
+run_library("library.csv")
+

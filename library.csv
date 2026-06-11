@@ -1,3 +1,4 @@
 name,cuisine,price,tags
-Chicken Rice,singaporean,cheap,fast|lunch
-Sushiro,japanese,medium,sushi|lunch
+Chicken Rice,local,$,fast|local
+Sushiro,japanese,$$,sushi|
+GYG,mexican,$,fastfood
