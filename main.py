@@ -29,9 +29,6 @@ def load_food_option():
 food_options = load_food_option()
 
 
-
-
-
 def display_food(food_options):
     if not food_options:
         print(" Nothing to display.")
@@ -47,9 +44,6 @@ def display_food(food_options):
    Others : {food_option['tags']} """)
   
 
-
-
-
 def add_food(filename, food_options):
    answer = input("Would you like to add a new food option?")
    
@@ -62,7 +56,6 @@ def add_food(filename, food_options):
           writer = csv.writer(f)
           writer.writerow([new_name, new_cuisine, new_price, new_tags])
           print("Added successfully!")
-
 
 
 def rank_food(food_options):
@@ -97,10 +90,21 @@ def rank_food(food_options):
    ranked_results.sort(reverse = True, key=lambda item: item[0])
    for i, (score, food) in enumerate(ranked_results, start=1):
         print(f"""
-#{i} | {food['name']}
+   #{i} | {food['name']}
    Cuisine  : {food['cuisine']}
    Price : {food['price']} """)
-  
+
+
+import random
+
+def randomise_food(food_options):
+   random_number = random.randint(0, len(food_options) - 1)
+   print(f"""
+   
+   #random-food | {food_options[random_number]['name']}
+   Cuisine  : {food_options[random_number]['cuisine']}
+   Price : {food_options[random_number]['price']} 
+   Others : {food_options[random_number]['tags']} """)
 
 
 def run_library(filename):
@@ -121,9 +125,8 @@ def run_library(filename):
          add_food("library.csv", food_options)
       elif choice == "3":
          rank_food(food_options)
-         break
       elif choice == "4":
-         print('test')
+         randomise_food(food_options)
       elif choice == "5":
          print("Goodbye!")
          break
