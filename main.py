@@ -1,4 +1,5 @@
 import csv
+import random
 
 food_library = [
     ["name", "cuisine", "price", "tags"],
@@ -94,8 +95,6 @@ def rank_food(food_options):
    Cuisine  : {food['cuisine']}
    Price : {food['price']} """)
 
-
-import random
 
 def randomise_food(food_options):
    random_number = random.randint(0, len(food_options) - 1)
