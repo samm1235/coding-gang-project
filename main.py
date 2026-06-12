@@ -3,8 +3,8 @@ import random
 
 food_library = [
     ["name", "cuisine", "price", "tags"],
-    ["Chicken Rice", "local", "$", "fast|local"],
-    ["Sushiro", "japanese", "$$", "sushi|"],
+    ["Chicken Rice", "local", "$", "fast_local"],
+    ["Sushiro", "japanese", "$$", "sushi"],
     ["GYG", "mexican", "$", "fastfood"]
 ]
 
@@ -63,16 +63,11 @@ def rank_food(food_options):
    print("Please input your preferences. Press enter to skip")
    cuisine_input = input("What cuisine do you prefer?: ").lower()
    price_input = input("What is your price range (from $ to $$$): ").lower()
-   tag_input = input("Any other requirements? (use | to separate): ").lower()
-   searched_tags = []
+   tag_input = input("Any other requirements? (use , to separate): ").lower()
 
-   if tag_input:
-      searched_tags = [tag.strip() for tag in tag.spilt("|")]
-   
    ranked_results = []
 
    for food in food_options:
-      library_tags = food["tags"].split("|")
       score = 0
 
 
@@ -83,8 +78,8 @@ def rank_food(food_options):
          if food["price"].lower() == price_input:
             score += 2
       if tag_input:
-         for tag in searched_tags:
-            if tag in library_tags:
+         for tag in tag_input:
+            if tag in food["tags"]:
                score += 1
 
       ranked_results.append((score, food))
@@ -131,5 +126,5 @@ def run_library(filename):
          break
       else:
          print('invalid choice')
-run_library("library.csv")
+
 
