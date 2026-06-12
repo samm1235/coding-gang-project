@@ -46,7 +46,7 @@ def display_food(food_options):
   
 
 def add_food(filename, food_options):
-   answer = input("Would you like to add a new food option?")
+   answer = input("Would you like to add a new food option? (yes/no)")
    
    if answer == "yes":
       new_name = input("Input name of restaurant")
@@ -57,6 +57,8 @@ def add_food(filename, food_options):
           writer = csv.writer(f)
           writer.writerow([new_name, new_cuisine, new_price, new_tags])
           print("Added successfully!")
+   else:
+      return None
 
 
 def rank_food(food_options):
