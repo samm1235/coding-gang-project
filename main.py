@@ -1,21 +1,9 @@
 import csv
 import random
 
-food_library = [
-    ["name", "cuisine", "price", "tags"],
-    ["Chicken Rice", "local", "$", "fast_local"],
-    ["Sushiro", "japanese", "$$", "sushi"],
-    ["GYG", "mexican", "$", "fastfood"]
-]
-
-with open("library.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(food_library)
-
-
-def load_food_option():
+def load_food_option(filename):
   food_options = []
-  with open("library.csv", "r") as f:
+  with open(filename, "r") as f:
       reader = csv.DictReader(f)
       for row in reader:
         food_option = {
@@ -27,11 +15,10 @@ def load_food_option():
         food_options.append(food_option)
   return food_options
 
-food_options = load_food_option()
 
-
-def display_food(food_options):
-    if not food_options:
+def display_food(filename):
+    food_options = load_food_option(filename)
+    if food_options == []:
         print(" Nothing to display.")
         return
 
@@ -39,29 +26,33 @@ def display_food(food_options):
 
     for i, food_option in enumerate(food_options, start=1):
         print(f"""
-#{i} | {food_option['name']}
-   Cuisine  : {food_option['cuisine']}
-   Price : {food_option['price']} 
-   Others : {food_option['tags']} """)
+   #{i} | {food_option['name']}
+      Cuisine : {food_option['cuisine']}
+      Price: {food_option['price']} 
+      Tags: {food_option['tags']} """)
   
 
-def add_food(filename, food_options):
-   answer = input("Would you like to add a new food option? (yes/no)")
+def add_food(filename):
+   food_options = load_food_option(filename)
+   answer = input("Would you like to add a new food option (yes/no)? ")
    
    if answer == "yes":
-      new_name = input("Input name of restaurant")
-      new_cuisine = input("Input cuisine")
-      new_price = input("Input price")
-      new_tags = input("Input tags (use | to separate): ")
+      new_name = input("Input name of restaurant: ")
+      new_cuisine = input("Input cuisine: ")
+      new_price = input("Input price: ")
+      new_tags = input("Input tags (use _ to separate): ")
       with open(filename, "a", newline="") as f:
           writer = csv.writer(f)
           writer.writerow([new_name, new_cuisine, new_price, new_tags])
           print("Added successfully!")
+      
    else:
+      print("Back to home page...")
       return None
 
 
-def rank_food(food_options):
+def rank_food(filename):
+   food_options = load_food_option(filename)
    print("Please input your preferences. Press enter to skip")
    cuisine_input = input("What cuisine do you prefer?: ").lower()
    price_input = input("What is your price range (from $ to $$$): ").lower()
@@ -71,8 +62,6 @@ def rank_food(food_options):
 
    for food in food_options:
       score = 0
-
-
       if cuisine_input:
          if food["cuisine"].lower() == cuisine_input:
             score += 3
@@ -86,21 +75,21 @@ def rank_food(food_options):
 
       ranked_results.append((score, food))
    ranked_results.sort(reverse = True, key=lambda item: item[0])
-   for i, (score, food) in enumerate(ranked_results, start=1):
+   for i, (score, food) in enumerate(ranked_results[:3], start=1):
         print(f"""
    #{i} | {food['name']}
-   Cuisine  : {food['cuisine']}
-   Price : {food['price']} """)
+      Cuisine : {food['cuisine']}
+      Price: {food['price']} """)
 
 
-def randomise_food(food_options):
+def randomise_food(filename):
+   food_options = load_food_option(filename)
    random_number = random.randint(0, len(food_options) - 1)
    print(f"""
-   
-   #random-food | {food_options[random_number]['name']}
-   Cuisine  : {food_options[random_number]['cuisine']}
-   Price : {food_options[random_number]['price']} 
-   Others : {food_options[random_number]['tags']} """)
+   # Random-food | {food_options[random_number]['name']}
+      Cuisine: {food_options[random_number]['cuisine']}
+      Price: {food_options[random_number]['price']} 
+      Tags: {food_options[random_number]['tags']} """)
 
 
 def run_library(filename):
@@ -109,20 +98,24 @@ def run_library(filename):
       print("=== Menu ===")
       print("1. View all food options")
       print("2. Add new food options")
-      print("3. Help choose food options based on preferences")
+      print("3. Choose food options based on preferences")
       print("4. Random food generator")
       print("5. Quit and save")
 
       choice = input("Please input choice from 1-5: ")
       print()
       if choice == "1":
-         display_food(food_options)
+         display_food(filename)
+         print("")
       elif choice == "2":
-         add_food("library.csv", food_options)
+         add_food(filename)
+         print("")
       elif choice == "3":
-         rank_food(food_options)
+         rank_food(filename)
+         print("")
       elif choice == "4":
-         randomise_food(food_options)
+         randomise_food(filename)
+         print("")
       elif choice == "5":
          print("Goodbye!")
          break

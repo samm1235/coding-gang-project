@@ -26,4 +26,4 @@ Figure out classes
 Create random_food generator
 Add more food
 Only show top 10 results
-Add delete food option?
+Add delete food option? yes!
