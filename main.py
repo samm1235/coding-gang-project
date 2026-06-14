@@ -1,6 +1,7 @@
 import csv
 import random
 
+
 def load_food_option(filename):
   food_options = []
   with open(filename, "r") as f:

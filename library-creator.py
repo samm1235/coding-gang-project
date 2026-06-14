@@ -1,3 +1,6 @@
+# only to be run ONCE before u start a new list. 
+# If run, library.csv will be reset.
+
 import csv
 
 food_library = [
