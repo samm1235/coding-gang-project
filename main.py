@@ -55,7 +55,7 @@ def add_or_remove_food(filename):
             with open(filename, "r", newline="") as f:
                reader = csv.reader(f)
                rows = list(reader)
-            del rows[i]
+               del rows[i]
             with open(filename, "w", newline="") as file:
                writer = csv.writer(file)
                writer.writerows(rows)
