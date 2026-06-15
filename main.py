@@ -33,11 +33,11 @@ def display_food(filename):
       Tags: {food_option['tags']} """)
   
 
-def add_food(filename):
+def add_or_remove_food(filename):
    food_options = load_food_option(filename)
-   answer = input("Would you like to add a new food option (yes/no)? ")
+   answer = input("Would you like to add or remove food option (add/del)?:  ")
    
-   if answer == "yes":
+   if answer == "add":
       new_name = input("Input name of restaurant: ")
       new_cuisine = input("Input cuisine: ")
       new_price = input("Input price: ")
@@ -45,10 +45,23 @@ def add_food(filename):
       with open(filename, "a", newline="") as f:
           writer = csv.writer(f)
           writer.writerow([new_name, new_cuisine, new_price, new_tags])
+          print("")
           print("Added successfully!")
-      
+
+   elif answer == "del":
+      target = input("Input name of restaurant: ")
+      for i, food_option in enumerate(food_options, start = 0):
+         if target in food_option:
+            with open(filename, "r", newline="") as f:
+               reader = csv.reader(f)
+               rows = list(reader)
+            del rows[i]
+            with open(filename, "w", newline="") as file:
+               writer = csv.writer(file)
+               writer.writerows(rows)
+
    else:
-      print("Back to home page...")
+      print("Invalid. Back to home page...")
       return None
 
 
@@ -98,7 +111,7 @@ def run_library(filename):
    while True:
       print("=== Menu ===")
       print("1. View all food options")
-      print("2. Add new food options")
+      print("2. Add or remove food option")
       print("3. Choose food options based on preferences")
       print("4. Random food generator")
       print("5. Quit and save")
@@ -109,7 +122,7 @@ def run_library(filename):
          display_food(filename)
          print("")
       elif choice == "2":
-         add_food(filename)
+         add_or_remove_food(filename)
          print("")
       elif choice == "3":
          rank_food(filename)
