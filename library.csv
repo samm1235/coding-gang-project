@@ -1,9 +1,5 @@
 name,cuisine,price,tags
-Chicken Rice,local,$,"fast,local"
-Sushiro,japanese,$$,sushi
-GYG,mexican,$,fastfood
-pizza hut,western,$,fast
-wokhey,chinese,$$,"fried"
+wok hey,chinese,$$,fried
 five guys,western,$$$,"American, customisable burger"
-mos burger,Western,$$,Fastfood
+mos burger,Western,$$,fast food
 yakun kaya toast,singaporean,$$,breakfast

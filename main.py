@@ -2,7 +2,7 @@ import csv
 import random
 
 
-def load_food_option(filename):
+def load_food_option(filename: str):
   food_options = []
   with open(filename, "r") as f:
       reader = csv.DictReader(f)
@@ -17,7 +17,7 @@ def load_food_option(filename):
   return food_options
 
 
-def display_food(filename):
+def display_food(filename: str):
     food_options = load_food_option(filename)
     if food_options == []:
         print(" Nothing to display.")
@@ -33,7 +33,7 @@ def display_food(filename):
       Tags: {food_option['tags']} """)
   
 
-def add_or_remove_food(filename):
+def add_or_remove_food(filename: str):
    food_options = load_food_option(filename)
    answer = input("Would you like to add or remove food option (add/del)?:  ")
    
@@ -46,12 +46,12 @@ def add_or_remove_food(filename):
           writer = csv.writer(f)
           writer.writerow([new_name, new_cuisine, new_price, new_tags])
           print("")
-          print("Added successfully!")
+          print("Item added successfully!")
 
    elif answer == "del":
       target = input("Input name of restaurant: ")
-      for i, food_option in enumerate(food_options, start = 0):
-         if target in food_option:
+      for i, food_option in enumerate(food_options, start = 1):
+         if target in food_option['name']:
             with open(filename, "r", newline="") as f:
                reader = csv.reader(f)
                rows = list(reader)
@@ -59,13 +59,15 @@ def add_or_remove_food(filename):
             with open(filename, "w", newline="") as file:
                writer = csv.writer(file)
                writer.writerows(rows)
-
+            print("Item removed successfully!")
+      
+         
    else:
       print("Invalid. Back to home page...")
       return None
 
 
-def rank_food(filename):
+def rank_food(filename: str):
    food_options = load_food_option(filename)
    print("Please input your preferences. Press enter to skip")
    cuisine_input = input("What cuisine do you prefer?: ").lower()
@@ -96,7 +98,7 @@ def rank_food(filename):
       Price: {food['price']} """)
 
 
-def randomise_food(filename):
+def randomise_food(filename: str):
    food_options = load_food_option(filename)
    random_number = random.randint(0, len(food_options) - 1)
    print(f"""
@@ -106,7 +108,7 @@ def randomise_food(filename):
       Tags: {food_options[random_number]['tags']} """)
 
 
-def run_library(filename):
+def run_library(filename: str):
    print("Welcome")
    while True:
       print("=== Menu ===")

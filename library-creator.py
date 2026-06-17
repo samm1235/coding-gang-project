@@ -5,9 +5,9 @@ import csv
 
 food_library = [
     ["name", "cuisine", "price", "tags"],
-    ["Chicken Rice", "local", "$", "fast,local"],
-    ["Sushiro", "japanese", "$$", "sushi"],
-    ["GYG", "mexican", "$", "fastfood"]
+    ["chicken Rice", "local", "$", "fast,local"],
+    ["sushiro", "japanese", "$$", "sushi"],
+    ["gyg", "mexican", "$", "fastfood"]
 ]
 
 with open("library.csv", "w", newline="") as f:
