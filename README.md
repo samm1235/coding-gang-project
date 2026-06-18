@@ -2,7 +2,7 @@
 BBB hackathon
 
 == purpose ==
-1. It aims to help indecisive people decide on what to eat based on their preferences 
+1. It aims to help indecisive people decide on what to eat, based on their preferences.
 
 
 == version updates ==

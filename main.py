@@ -2,6 +2,18 @@ import csv
 import random
 
 
+# food_library = [
+#     ["name", "cuisine", "price", "tags"],
+#     ["chicken rice", "local", "$", "fast,local"],
+#     ["sushiro", "japanese", "$$", "sushi"],
+#     ["gyg", "mexican", "$", "fastfood"]
+# ]
+
+# with open("library.csv", "w", newline="") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(food_library)
+
+
 def load_food_option(filename: str):
   food_options = []
   with open(filename, "r") as f:
@@ -31,7 +43,7 @@ def display_food(filename: str):
       Cuisine : {food_option['cuisine']}
       Price: {food_option['price']} 
       Tags: {food_option['tags']} """)
-  
+
 
 def add_or_remove_food(filename: str):
    food_options = load_food_option(filename)
@@ -79,11 +91,11 @@ def rank_food(filename: str):
    for food in food_options:
       score = 0
       if cuisine_input:
-         if food["cuisine"].lower() == cuisine_input:
-            score += 3
+         if cuisine_input in food["cuisine"]:
+            score += 1
       if price_input:
          if food["price"].lower() == price_input:
-            score += 2
+            score += 1
       if tag_input:
          for tag in tag_input:
             if tag in food["tags"]:
@@ -109,7 +121,7 @@ def randomise_food(filename: str):
 
 
 def run_library(filename: str):
-   print("Welcome")
+   print("Welcome!")
    while True:
       print("=== Menu ===")
       print("1. View all food options")
