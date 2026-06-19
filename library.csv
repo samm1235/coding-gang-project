@@ -1,21 +1,20 @@
 name,cuisine,price,tags
-chicken rice, local, $, "fast, local"
-gyg, mexican, $, fast-food
-pizza hut, western, $, "oily, fastfood"
-mcdonalds, western, $, fast-food
-five guys, western, $$$, "american, fast-food"
-dian xiao er, chinese, $$$, familystyle
-crystal jade, chinese, $$$, familystyle
-xiang xiang hunan food, chinese, $$$, familystyle
-springleaf prata, indian, $, supper
-wingstop, western, $$, "chickenwings, oily, american"
-a hot hideout, chinese, $$, "mala, singaporean, customisable"
-jinjja chicken, korean, $, "gimbap, fried"
-marche, swedish, $$$, "rosti, diverse"
-stuff'd, mexican, $$, "customisable, convenient, healthy"
-ajisen ramen, japanese, $$, ""
-tori-q, japanese, $$, "skewers"
-hai di lao, chinese, $$$, "hotpot"
-yakiniku like, japanese, $, "grill, bbq"
-mos burger, western, $$, "quality"
-saizeriya, "italian, japanese", $, "many options"
+gyg,mexican,$,fastfood
+pizza hut,western,$,"oily,fastfood"
+mcdonalds,western,$,fastfood
+five guys, western,$$$,"american,fastfood"
+dian xiao er, chinese,$$$,familystyle
+crystal jade, chinese,$$$,familystyle
+xiang xiang hunan food,chinese, $$$, "familystyle"
+springleaf prata, indian, $, "supper"
+wingstop, western, $$," ""chickenwings", oily," american"""
+a hot hideout, chinese, $$," ""mala", singaporean," customisable"""
+jinjja chicken, korean, $," ""gimbap"," fried"""
+marche, swedish, $$$," ""rosti"," diverse"""
+stuff'd, mexican, $$," "customisable, convenient, healthy"
+ajisen ramen, japanese, $$," "ramen"
+tori-q, japanese, $$," ""skewers"""
+hai di lao, chinese, $$$," ""hotpot"""
+yakiniku like, japanese, $," ""grill"," bbq"""
+mos burger, western, $$," ""quality"""
+saizeriya," ""italian"," japanese""", $," ""many options"""

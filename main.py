@@ -87,8 +87,9 @@ def rank_food(filename: str):
          if food["price"].lower() == price_input:
             score += 1
       if tag_input:
-         for tag in tag_input:
-            if tag in food["tags"]:
+         food_tags = [item.strip() for item in food["tags"].lower().split(",")]
+         for tag in tag_input.split(","):
+            if tag.strip() in food["tags"].lower():
                score += 1
 
       ranked_results.append((score, food))
@@ -97,7 +98,9 @@ def rank_food(filename: str):
         print(f"""
    #{i} | {food['name']}
       Cuisine : {food['cuisine']}
-      Price: {food['price']} """)
+      Price: {food['price']} 
+      Tags: {food['tags']}
+      Score: {score} """)
 
 
 def randomise_food(filename: str):
