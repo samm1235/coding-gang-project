@@ -87,9 +87,7 @@ class Food_manager:
                 writer = csv.writer(file)
                 writer.writerow(header) 
                 writer.writerows(remaining_data)
-            print(
-                f"Successfully removed '{target}' !"
-            )
+            print(f"Successfully removed '{target}' !")
          else:
             print("No matching restaurant found.")
 
