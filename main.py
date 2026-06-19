@@ -2,18 +2,6 @@ import csv
 import random
 
 
-# food_library = [
-#     ["name", "cuisine", "price", "tags"],
-#     ["chicken rice", "local", "$", "fast,local"],
-#     ["sushiro", "japanese", "$$", "sushi"],
-#     ["gyg", "mexican", "$", "fastfood"]
-# ]
-
-# with open("library.csv", "w", newline="") as f:
-#     writer = csv.writer(f)
-#     writer.writerows(food_library)
-
-
 def load_food_option(filename: str):
   food_options = []
   with open(filename, "r") as f:
@@ -37,7 +25,9 @@ def display_food(filename: str):
 
     print(f"=== Food options ===")
 
-    for i, food_option in enumerate(food_options, start=1):
+
+   
+    for i, food_option in enumerate(food_options[:10], start=1):
         print(f"""
    #{i} | {food_option['name']}
       Cuisine : {food_option['cuisine']}
