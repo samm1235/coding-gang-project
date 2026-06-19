@@ -2,22 +2,21 @@ import csv
 import random
 
 class Food_manager:
-
    def __init__(self, filename: str):
         self.filename = filename
 
    def load_food_option(self):
       food_options = []
       with open(self.filename, "r") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-               food_option = {
-                     "name": row["name"],
-                     "cuisine": row["cuisine"],
-                     "price": row["price"],
-                     "tags": row["tags"]
-                     }
-               food_options.append(food_option)
+         reader = csv.DictReader(f)
+         for row in reader:
+            food_option = [
+                     row["name"],
+                     row["cuisine"],
+                     row["price"],
+                     row["tags"]
+            ]
+            food_options.append(food_option)
       return food_options
 
 
@@ -32,10 +31,10 @@ class Food_manager:
          
             for index, food in enumerate(chunk, start=i + 1):
                print(f""" 
-   #{index} | {food['name']}
-   Cuisine : {food['cuisine']}
-   Price: {food['price']}
-   Tags: {food['tags']}""")
+   #{index} | {food[0]}
+   Cuisine : {food[1]}
+   Price: {food[2]}
+   Tags: {food[3]}""")
                
             if i + size < len(food_options):
                response = input("Load more (yes/no?): ").lower()
@@ -112,25 +111,25 @@ class Food_manager:
       for food in food_options:
          score = 0
          if cuisine_input:
-            if cuisine_input in food["cuisine"]:
+            if cuisine_input in food[1]:
                score += 1
          if price_input:
-            if food["price"].lower() == price_input:
+            if food[2].lower() == price_input:
                score += 1
          if tag_input:
             food_tags = [item.strip() for item in food["tags"].lower().split(",")]
             for tag in tag_input.split(","):
-               if tag.strip() in food["tags"].lower():
+               if tag.strip() in food[3].lower():
                   score += 1
 
          ranked_results.append((score, food))
       ranked_results.sort(reverse = True, key=lambda item: item[0])
       for i, (score, food) in enumerate(ranked_results[:3], start=1):
          print(f"""
-   #{i} | {food['name']}
-      Cuisine : {food['cuisine']}
-      Price: {food['price']} 
-      Tags: {food['tags']}
+   #{i} | {food[0]}
+      Cuisine : {food[1]}
+      Price: {food[2]} 
+      Tags: {food[3]}
       Score: {score} """)
 
 
@@ -138,10 +137,10 @@ class Food_manager:
       food_options = self.load_food_option()
       random_number = random.randint(0, len(food_options) - 1)
       print(f"""
-   # Random-food | {food_options[random_number]['name']}
-      Cuisine: {food_options[random_number]['cuisine']}
-      Price: {food_options[random_number]['price']} 
-      Tags: {food_options[random_number]['tags']} """)
+   # Random-food | {food_options[random_number][0]}
+      Cuisine: {food_options[random_number][1]}
+      Price: {food_options[random_number][2]} 
+      Tags: {food_options[random_number][3]} """)
 
 
    def run(self):
