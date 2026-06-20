@@ -14,9 +14,9 @@ How to Run:
 - run the file(main.py)
 
 File Structure:
-- main contains all code for all the main functions
+- function contains all code for all the main functions
 - library contains all the items
-- test-for-code is the interface used to run the code
+- main is the interface used to run the code
 
 Reflection: 
 The hardest problem faced was to create a delete function without messing with the code. The way we solved it was to keep experimenting with different types of code to come up with a code that worked smoothly. If there was more time, we would figure out a new function that could allow many lists to be saved into a master list, such that one can access whichever list they want. Also, we would figure out a way to edit the items in the list.
